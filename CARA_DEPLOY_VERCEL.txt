@@ -1,0 +1,60 @@
+# DEPLOY KE VERCEL - AKG MC PLAN
+
+## CARA DEPLOY 1 MENIT (Paling Mudah):
+
+### Opsi A - Drag & Drop (Tanpa Install):
+1. Buka https://vercel.com
+2. Login dengan GitHub / Email
+3. Klik "Add New..." > "Project"
+4. Klik "Browse" dan upload folder public/index.html ini
+   ATAU drag folder VERCEL_DEPLOY ke Vercel
+5. Klik Deploy - selesai!
+6. Dapat link: https://akg-machine-plan.vercel.app
+
+Link itu bisa dibuka 30 user barengan.
+
+### Opsi B - Via Vercel CLI (Untuk update otomatis):
+1. Install Node.js dari nodejs.org
+2. Buka CMD di folder VERCEL_DEPLOY
+3. Ketik:
+   npm i -g vercel
+   vercel login
+   vercel --prod
+
+### Opsi C - Via GitHub (Auto deploy tiap update):
+1. Buat repo baru di GitHub
+2. Upload semua file di folder ini ke GitHub
+3. Di Vercel > Import Project > Pilih repo GitHub kamu
+4. Deploy
+
+## SUPAYA DATABASE TIDAK HILANG (Untuk 30 user):
+
+Vercel serverless itu file-nya hilang tiap deploy. Jadi untuk database permanen:
+
+1. Di Vercel Dashboard > Project kamu > Storage > Create Database
+2. Pilih "KV (Redis)" - Gratis untuk 30 user
+3. Klik Create
+4. Vercel otomatis tambahkan ENV: KV_REST_API_URL, KV_REST_API_TOKEN
+5. Redeploy - sekarang data tersimpan permanen di KV
+
+Atau pakai Supabase (sudah support di file asli kamu):
+- File asli kamu sudah ada supabase_url dan supabase_anon_key di localStorage
+- Set di Vercel > Settings > Environment Variables:
+  SUPABASE_URL = https://xxx.supabase.co
+  SUPABASE_ANON_KEY = eyJ...
+
+## AUTO-SYNC 30 DETIK:
+Sudah aktif otomatis. Tiap 30 detik, 30 user akan dapat update terbaru.
+
+## LINK SETELAH DEPLOY:
+Contoh: https://akg-machine-plan.vercel.app
+Bagikan link itu ke 30 user team - bisa dibuka dari mana saja, tidak perlu di jaringan lokal.
+
+## BIAYA:
+Vercel Hobby GRATIS untuk:
+- 100GB bandwidth / bulan (cukup untuk 30 user)
+- Unlimited requests
+- Database KV gratis 256MB
+
+## JIKA MAU DOMAIN SENDIRI:
+Vercel > Settings > Domains > Add Domain > mcplan.anggunkreasi.com
